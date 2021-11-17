@@ -7,7 +7,7 @@ define accounts::authorized_key(
   $target                   = undef,
   $ssh_authorized_key_title = $::accounts::ssh_authorized_key_title,
 ) {
-  validate_hash($::accounts::ssh_keys)
+  validate_legacy(Hash, 'validate_hash', $::accounts::ssh_keys)
 
   # Retrieve $ssh_keys and $users in the current scope
   $ssh_keys = $::accounts::ssh_keys
