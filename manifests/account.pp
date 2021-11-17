@@ -95,7 +95,7 @@ define accounts::account(
     }
 
     if $ensure != absent {
-      if is_string($authorized_keys) or is_array($authorized_keys) {
+      if $authorized_keys =~ String or $authorized_keys =~ Array {
         $user_has_key = has_key($::accounts::ssh_keys, $name) and $::accounts::ssh_keys[$name]['ensure'] != 'absent'
         $_authorized_keys = $user_has_key ? {
           true  => suffix(unique( delete_undef_values( flatten( [$authorized_keys, $name] ) ) ),"-on-${name}"),
