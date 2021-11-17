@@ -5,6 +5,7 @@ class accounts::instances(
   $users                    = {},
   $usergroups               = {},
   $accounts                 = {},
+  $merge_strategy           = 'deep',
   $start_uid                = undef,
   $start_gid                = undef,
   $purge_ssh_keys           = false,
@@ -12,19 +13,19 @@ class accounts::instances(
 ) {
 
   if empty($groups) {
-    $groups_data = hiera_hash('accounts::groups', {})
+    $groups_data = lookup('accounts::groups', Hash, $merge_strategy, {})
   }
   if empty($ssh_keys) {
-    $ssh_keys_data = hiera_hash('accounts::ssh_keys', {})
+    $ssh_keys_data = lookup('accounts::ssh_keys', Hash, $merge_strategy, {})
   }
   if empty($users) {
-    $users_data = hiera_hash('accounts::users', {})
+    $users_data = lookup('accounts::users', Hash, $merge_strategy, {})
   }
   if empty($usergroups) {
-    $usergroups_data = hiera_hash('accounts::usergroups', {})
+    $usergroups_data = lookup('accounts::usergroups', Hash, $merge_strategy, {})
   }
   if empty($accounts) {
-    $accounts_data = hiera_hash('accounts::accounts', {})
+    $accounts_data =  lookup('accounts::accounts', Hash, $merge_strategy, {})
   }
   class { 'accounts':
     groups                   => $groups_data,
@@ -37,5 +38,4 @@ class accounts::instances(
     purge_ssh_keys           => $purge_ssh_keys,
     ssh_authorized_key_title => $ssh_authorized_key_title,
   }
-
 }
