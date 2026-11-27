@@ -1,6 +1,6 @@
 {
   "name": "camptocamp-accounts",
-  "version": "1.11.1",
+  "version": "2.1.0",
   "author": "camptocamp",
   "summary": "Puppet module for Managing SSH keys, users and groups",
   "license": "Apache-2.0",
@@ -10,17 +10,11 @@
   "dependencies": [
     {
       "name": "puppetlabs/stdlib",
-      "version_requirement": ">=3.2.0 <7.0.0"
+      "version_requirement": ">=9.4.0 <10.0.0"
     },
     {
       "name": "herculesteam/augeasproviders_shellvar",
       "version_requirement": ">=2.2.1 < 5.0.0"
-    }
-  ],
-  "requirements": [
-    {
-      "name": "puppet",
-      "version_requirement": "4.x"
     }
   ],
   "operatingsystem_support": [
@@ -48,8 +42,19 @@
       "operatingsystemrelease": [
         "5",
         "6",
-        "7"
+        "7",
+        "8",
+        "9"
       ]
     }
-  ]
+  ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">= 6.0.0 < 9.0.0"
+    }
+  ],
+  "pdk-version": "3.0.0",
+  "template-url": "pdk-default#3.0.0",
+  "template-ref": "tags/3.0.0-0-g056e50d"
 }
